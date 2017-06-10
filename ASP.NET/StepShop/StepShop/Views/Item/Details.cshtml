@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h3>@ViewBag.Item.Name</h3>
+        <img src="~/Content/Images/Items/Phones/@(@ViewBag.Item.Id).jpg" alt="альтернативный текст" />
+        <h4>Отзывы</h4>
+
+        <form method="post" action="/Item/Detail">
+            <input type="hidden" value="Item.Id" name="Item.Id" />
+            <table>
+                <tr>
+                    <td><p>Имя автора </p></td>
+                    <td><input type="text" name="Author" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите комментарий :</p></td>
+                    <td><input type="text" name="Message" /> </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Отправить" /> </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Author</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+            @foreach (var item in ViewBag.Item.Comments)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Author</td>
+                    <td>@item.Message</td>
+                    <td>@item.Date</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
