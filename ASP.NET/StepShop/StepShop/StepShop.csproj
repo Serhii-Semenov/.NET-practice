@@ -111,6 +111,7 @@
     <Compile Include="Models\Item.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyShopModel.cs" />
     <Compile Include="Models\Purchase.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
@@ -153,6 +154,7 @@
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Item\Details.cshtml" />
+    <Content Include="Views\Shared\_Layout.chtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

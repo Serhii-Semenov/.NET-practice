@@ -1,6 +1,7 @@
-﻿@{
+﻿@using StepShop.Models;
+@model MyShopModel
+@{
     Layout = null;
-    int i = (int)(ViewBag.Item.Comments.Count) - 1;
 }
 
 <!DOCTYPE html>
@@ -12,12 +13,12 @@
 </head>
 <body>
     <div>
-        <h3>@ViewBag.Item.Name</h3>
-        <img src="~/Content/Images/Items/Phones/@(@ViewBag.Item.Id).jpg" alt="альтернативный текст" />
+        <h3>@Model.item.Name</h3>
+        <img src="~/@Model.ImagePath" alt="альтернативный текст" />
         <h4>Отзывы</h4>
 
         <form method="post" action="/Item/AddComment">
-            <input type="hidden" value="@ViewBag.Item.Id" name="ItemId" />
+            <input type="hidden" value="@Model.item.Id" name="ItemId" />
             <table>
                 <tr>
                     <td><p>Имя автора </p></td>
@@ -41,13 +42,13 @@
                 <th>Message</th>
                 <th>Date</th>
             </tr>
-            @for ( ; i>=0; i--)
+            @foreach (var v in Model.item.Comments)
             {
                 <tr>
-                    <td>@ViewBag.Item.Comments[i].Id</td>
-                    <td>@ViewBag.Item.Comments[i].Author</td>
-                    <td>@ViewBag.Item.Comments[i].Message</td>
-                    <td>@ViewBag.Item.Comments[i].Date</td>
+                    <td>@v.Id</td>
+                    <td>@v.Author</td>
+                    <td>@v.Message</td>
+                    <td>@v.Date</td>
                 </tr>
             }
         </table>

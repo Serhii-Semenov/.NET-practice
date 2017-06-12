@@ -17,15 +17,20 @@ namespace StepShop.Controllers
             // TODO: получить нужный элемент и отдать его представлению
             using(ShopEntities1 entities = new ShopEntities1())
             {
-                ViewBag.Item = await entities.Items
+                var _item = await entities.Items
                     .Include(i => i.CategoryType)
                     .Include(i=>i.Comments)
                     .FirstOrDefaultAsync(a => a.Id == id);
-                if (ViewBag.Item == null)
+
+                if (_item == null)
                     return Redirect("/Home/Index");
-                // TODO : добавить отзывы 
+
+                _item.Comments = _item.Comments.OrderByDescending(r=>r.Date).ToList();
+
+                string path = "Content/Images/Items/" + _item.CategoryTypeId + "/" + _item.Id + ".jpg";
+
+                return View(new MyShopModel() { item = _item, ImagePath = path });
             }
-            return View();
         }
 
         [HttpPost]
