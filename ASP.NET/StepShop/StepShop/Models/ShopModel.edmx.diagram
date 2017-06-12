@@ -10,7 +10,7 @@
         <AssociationConnector Association="ShopModel.FK_Item_CategoryType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ShopModel.Purchase" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="ShopModel.FK_Purchase_Item" />
-        <EntityTypeShape EntityType="ShopModel.Comment" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="ShopModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" />
         <AssociationConnector Association="ShopModel.FK_Comment_Item" />
       </Diagram>
     </edmx:Diagrams>

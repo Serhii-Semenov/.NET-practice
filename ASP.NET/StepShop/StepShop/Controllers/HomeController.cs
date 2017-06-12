@@ -17,7 +17,8 @@ namespace StepShop.Controllers
                 ViewBag.Items = entities.Items
                                         .Include(i => i.CategoryType)
                                         .ToList();
-                // TO DO если нет такого id показать вьюху с ошибкой
+
+                if (ViewBag.Items == null) return View("Error");
             }
             return View();
         }

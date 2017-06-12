@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    int i = (int)(ViewBag.Item.Comments.Count) - 1;
 }
 
 <!DOCTYPE html>
@@ -15,8 +16,8 @@
         <img src="~/Content/Images/Items/Phones/@(@ViewBag.Item.Id).jpg" alt="альтернативный текст" />
         <h4>Отзывы</h4>
 
-        <form method="post" action="/Item/Detail">
-            <input type="hidden" value="Item.Id" name="Item.Id" />
+        <form method="post" action="/Item/AddComment">
+            <input type="hidden" value="@ViewBag.Item.Id" name="ItemId" />
             <table>
                 <tr>
                     <td><p>Имя автора </p></td>
@@ -40,13 +41,13 @@
                 <th>Message</th>
                 <th>Date</th>
             </tr>
-            @foreach (var item in ViewBag.Item.Comments)
+            @for ( ; i>=0; i--)
             {
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Author</td>
-                    <td>@item.Message</td>
-                    <td>@item.Date</td>
+                    <td>@ViewBag.Item.Comments[i].Id</td>
+                    <td>@ViewBag.Item.Comments[i].Author</td>
+                    <td>@ViewBag.Item.Comments[i].Message</td>
+                    <td>@ViewBag.Item.Comments[i].Date</td>
                 </tr>
             }
         </table>
