@@ -1,23 +1,18 @@
-﻿@using StepShop.Models;
+﻿@*View Details*@
+@using StepShop.Models;
 @model MyShopModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+
     <div>
         <h3>@Model.item.Name</h3>
         <img src="~/@Model.ImagePath" alt="альтернативный текст" />
         <h4>Отзывы</h4>
 
-        <form method="post" action="/Item/AddComment">
+        <form class="form-group" method="post" action="/Item/AddComment">
             <input type="hidden" value="@Model.item.Id" name="ItemId" />
             <table>
                 <tr>
@@ -35,7 +30,7 @@
             </table>
         </form>
 
-        <table border="1">
+        <table class="table table-condensed">
             <tr>
                 <th>Id</th>
                 <th>Author</th>
@@ -53,5 +48,3 @@
             }
         </table>
     </div>
-</body>
-</html>

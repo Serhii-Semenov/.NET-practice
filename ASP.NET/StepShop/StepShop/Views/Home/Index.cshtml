@@ -1,35 +1,35 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Items</title>
-</head>
-<body>
-    <div> 
-        <h1>Items</h1>
-        <table border="1">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-            </tr>
-            @foreach (var item in ViewBag.Items)
+<div>
+    <h1>Items</h1>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var item in ViewBag.Items)
             {
-                <tr>
-                    <td>@item.Id</td>
-                    <td><a href="/Item/Details/@item.Id">@item.CategoryType.Name</a></td>
-                    <td>@item.Description</td>
-                    <td>@item.Price</td>
-                </tr>
-            }
-        </table>
+            <tr>
+                <td>@item.Id</td>
+                <td><a href="/Item/Details/@item.Id">@item.CategoryType.Name</a></td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </table>
+</div>
+@section Footer
+{
+<div id="footer">
+    <div class="in_footer">
+        <h4>My cool footer</h4>
     </div>
-</body>
-</html>
+</div>
+}
+
+

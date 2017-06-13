@@ -4,18 +4,38 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <header>
-        <h1>Header</h1>
-    </header>
-
-    <div>
-        @RenderBody()
+    <div id="header">
+        <div class="in_header">
+            <h4> Step Shop</h4>
+            @Html.ActionLink("Главная", "Index", "Home", new { id = "" },
+                new { @class = "btn btn-warning", role = "button"})
+        </div>
     </div>
 
-    <footer>
-        <h3>Footer</h3>
-    </footer>
+    <div id="content">
+        <div class="in_content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @*Проверка наличия Footer в текущем представлении*@
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer");
+        @*Визуализация необязательной секции*@
+        @*@RenderSection(name: "Footer", required: false)*@
+    }
+    else
+    {
+        <div id="footer">
+            <div class="in_footer">
+                <h5> © 2017 Все права защищены.</h5>
+            </div>
+        </div>
+    }
 </body>
 </html>

@@ -1,0 +1,57 @@
+﻿#header {
+height:100px;
+background:#39F;
+color:#fff;
+padding-top:10px;
+}
+
+#content {
+padding-top:20px;
+}
+
+#footer {
+height: 50px;
+padding-top:10px;
+background:#CCC;
+width: 100%;
+}
+
+#header .in_header {
+width:800px;
+margin:auto;
+}
+#content .in_content {
+width:800px;
+margin:auto;
+}
+#footer .in_footer {
+width:800px;
+margin:auto;
+}
+
+* {
+margin:0; /*Убираем отступы по краям*/
+}
+body {
+height: 100%;
+min-width:900px;
+font-family:Cambria, "Times New Roman", serif;
+}
+html {
+position:relative;
+min-height:100%;
+}
+
+#content {
+padding-top:20px;
+padding-bottom: 100px;
+}
+
+#footer {
+height: 50px;
+padding-top:10px;
+background:#CCC;
+position: absolute;
+bottom: 0;
+width: 100%;
+}

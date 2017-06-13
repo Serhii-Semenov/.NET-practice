@@ -91,6 +91,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\Images\Items\Phones\1.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -155,6 +157,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
