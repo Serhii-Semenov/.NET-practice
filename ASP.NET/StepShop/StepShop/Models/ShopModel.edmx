@@ -32,6 +32,14 @@
           <Property Name="CategoryTypeId" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ItemImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Purchase">
           <Key>
             <PropertyRef Name="Id" />
@@ -68,6 +76,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ItemImage_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemImage" Type="Self.ItemImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemImage">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Purchase_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -86,6 +108,7 @@
           <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemImage" EntityType="Self.ItemImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comment_Item" Association="Self.FK_Comment_Item">
             <End Role="Item" EntitySet="Item" />
@@ -94,6 +117,10 @@
           <AssociationSet Name="FK_Item_CategoryType" Association="Self.FK_Item_CategoryType">
             <End Role="CategoryType" EntitySet="CategoryType" />
             <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemImage_Item" Association="Self.FK_ItemImage_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ItemImage" EntitySet="ItemImage" />
           </AssociationSet>
           <AssociationSet Name="FK_Purchase_Item" Association="Self.FK_Purchase_Item">
             <End Role="Item" EntitySet="Item" />
@@ -124,6 +151,7 @@
           <NavigationProperty Name="CategoryType" Relationship="Self.FK_Item_CategoryType" FromRole="Item" ToRole="CategoryType" />
           <NavigationProperty Name="Purchases" Relationship="ShopModel.FK_Purchase_Item" FromRole="Item" ToRole="Purchase" />
           <NavigationProperty Name="Comments" Relationship="ShopModel.FK_Comment_Item" FromRole="Item" ToRole="Comment" />
+          <NavigationProperty Name="ItemImages" Relationship="ShopModel.FK_ItemImage_Item" FromRole="Item" ToRole="ItemImage" />
         </EntityType>
         <Association Name="FK_Item_CategoryType">
           <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="1">
@@ -155,6 +183,11 @@
           <AssociationSet Name="FK_Comment_Item" Association="ShopModel.FK_Comment_Item">
             <End Role="Item" EntitySet="Items" />
             <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <EntitySet Name="ItemImages" EntityType="ShopModel.ItemImage" />
+          <AssociationSet Name="FK_ItemImage_Item" Association="ShopModel.FK_ItemImage_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ItemImage" EntitySet="ItemImages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Purchase">
@@ -205,6 +238,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ItemImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="ShopModel.FK_ItemImage_Item" FromRole="ItemImage" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_ItemImage_Item">
+          <End Type="ShopModel.Item" Role="Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopModel.ItemImage" Role="ItemImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemImage">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -246,6 +302,15 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemImages">
+            <EntityTypeMapping TypeName="ShopModel.ItemImage">
+              <MappingFragment StoreEntitySet="ItemImage">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

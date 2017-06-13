@@ -12,7 +12,7 @@
         <img src="~/@Model.ImagePath" alt="альтернативный текст" />
         <h4>Отзывы</h4>
 
-        <form class="form-group" method="post" action="/Item/AddComment">
+        @*<form class="form-group" method="post" action="/Item/AddComment">
             <input type="hidden" value="@Model.item.Id" name="ItemId" />
             <table>
                 <tr>
@@ -28,7 +28,33 @@
                     <td></td>
                 </tr>
             </table>
-        </form>
+        </form>*@
+        @using (Html.BeginForm("Buy", "Home", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @*<input type="hidden" value="@ViewBag.BookId" name="BookId" />*@
+            @Html.HiddenFor(a=>a.item.Id)
+            <table>
+                <tr>
+                    @*<td><p>Введите свое имя </p></td>*@
+                    <td><p>@Html.Label("Введите свое имя ")</p></td>
+                    @*<td><input type="text" name="Person" /> </td>*@
+                    <td>@Html.TextBox("Person", "Введите имя")</td>
+</tr>
+                <tr>
+                    @*<td><p>Введите адрес </p></td>*@
+                    <td><p>@Html.Label("Введите адрес ")</p></td>
+                    @*<td><input type="text" name="Address" /> </td>*@
+                    @Html.TextBox("Address", "Введите адрес")
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Отправить" /> </td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+
+
+
 
         <table class="table table-condensed">
             <tr>

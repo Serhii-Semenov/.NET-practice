@@ -8,7 +8,8 @@
     <table class="table">
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Name Item</th>
+            <th>Category Type</th>
             <th>Description</th>
             <th>Price</th>
         </tr>
@@ -16,7 +17,9 @@
             {
             <tr>
                 <td>@item.Id</td>
-                <td><a href="/Item/Details/@item.Id">@item.CategoryType.Name</a></td>
+                <td>@Html.ActionLink(item.Name as string, "Details", "Item", new { item.Id }, null)</td>
+                <td>@item.CategoryType.Name</td>
+                @*<td><a href="/Item/Details/@item.Id">@item.CategoryType.Name</a></td>*@
                 <td>@item.Description</td>
                 <td>@item.Price</td>
             </tr>
