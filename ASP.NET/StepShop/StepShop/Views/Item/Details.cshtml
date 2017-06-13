@@ -7,70 +7,49 @@
 
 
 
-    <div>
-        <h3>@Model.item.Name</h3>
-        <img src="~/@Model.ImagePath" alt="альтернативный текст" />
-        <h4>Отзывы</h4>
+<div>
+    <h3>@Model.item.Name</h3>
+    <img src="~/@Model.ImagePath" alt="альтернативный текст" />
 
-        @*<form class="form-group" method="post" action="/Item/AddComment">
-            <input type="hidden" value="@Model.item.Id" name="ItemId" />
-            <table>
-                <tr>
-                    <td><p>Имя автора </p></td>
-                    <td><input type="text" name="Author" /> </td>
-                </tr>
-                <tr>
-                    <td><p>Введите комментарий :</p></td>
-                    <td><input type="text" name="Message" /> </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Отправить" /> </td>
-                    <td></td>
-                </tr>
-            </table>
-        </form>*@
-        @using (Html.BeginForm("Buy", "Home", FormMethod.Post, new { @class = "form-group" }))
-        {
-            @*<input type="hidden" value="@ViewBag.BookId" name="BookId" />*@
-            @Html.HiddenFor(a=>a.item.Id)
-            <table>
-                <tr>
-                    @*<td><p>Введите свое имя </p></td>*@
-                    <td><p>@Html.Label("Введите свое имя ")</p></td>
-                    @*<td><input type="text" name="Person" /> </td>*@
-                    <td>@Html.TextBox("Person", "Введите имя")</td>
-</tr>
-                <tr>
-                    @*<td><p>Введите адрес </p></td>*@
-                    <td><p>@Html.Label("Введите адрес ")</p></td>
-                    @*<td><input type="text" name="Address" /> </td>*@
-                    @Html.TextBox("Address", "Введите адрес")
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Отправить" /> </td>
-                    <td></td>
-                </tr>
-            </table>
-        }
+    @Html.ActionLink("Изменить", "IndexChange", "ChangeItem", new { id = Model.item.Id },
+                new { @class = "btn btn-warning", role = "button" })
 
+    <h4>Отзывы</h4>
 
-
-
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.HiddenFor(a => a.item.Id)
         <table class="table table-condensed">
             <tr>
-                <th>Id</th>
-                <th>Author</th>
-                <th>Message</th>
-                <th>Date</th>
+                <td><p>@Html.Label("Введите свое имя ")</p></td>
+                <td>@Html.TextBox("Person", "Введите имя")</td>
             </tr>
-            @foreach (var v in Model.item.Comments)
-            {
-                <tr>
-                    <td>@v.Id</td>
-                    <td>@v.Author</td>
-                    <td>@v.Message</td>
-                    <td>@v.Date</td>
-                </tr>
-            }
+            <tr>
+                <td><p>@Html.Label("Ваш отзыв ")</p></td>
+                <td>@Html.TextBox("Address", "...отзыв ")</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Отправить" class="btn btn-success" /> </td>
+                <td></td>
+            </tr>
         </table>
-    </div>
+    }
+
+    <table class="table table-condensed">
+        <tr>
+            <th>Id</th>
+            <th>Author</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+        @foreach (var v in Model.item.Comments)
+        {
+            <tr>
+                <td>@v.Id</td>
+                <td>@v.Author</td>
+                <td>@v.Message</td>
+                <td>@v.Date</td>
+            </tr>
+        }
+    </table>
+</div>
