@@ -162,8 +162,8 @@
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\AddItem\AddItemView.cshtml" />
-    <Content Include="Views\ChangeItem\IndexChange.cshtml" />
+    <Content Include="Views\AddItem\IndexAdd.cshtml" />
+    <Content Include="Views\ChangeItem\Change.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

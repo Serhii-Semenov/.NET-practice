@@ -9,24 +9,24 @@
 
 <div>
     <h3>@Model.item.Name</h3>
-    <img src="~/@Model.ImagePath" alt="альтернативный текст" />
+    <img src="~/@Model.ImagePath" alt="Рисунок не загружен" />
 
-    @Html.ActionLink("Изменить", "IndexChange", "ChangeItem", new { id = Model.item.Id },
+    @Html.ActionLink("Изменить", "Change", "ChangeItem", new { id = Model.item.Id },
                 new { @class = "btn btn-warning", role = "button" })
 
     <h4>Отзывы</h4>
 
-    @using (Html.BeginForm("Buy", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("AddComment", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        @Html.HiddenFor(a => a.item.Id)
+        @Html.HiddenFor(a => a.item.)
         <table class="table table-condensed">
             <tr>
                 <td><p>@Html.Label("Введите свое имя ")</p></td>
-                <td>@Html.TextBox("Person", "Введите имя")</td>
+                <td>@Html.TextBox("Author", "Введите имя")</td>
             </tr>
             <tr>
                 <td><p>@Html.Label("Ваш отзыв ")</p></td>
-                <td>@Html.TextBox("Address", "...отзыв ")</td>
+                <td>@Html.TextBox("Message", "...отзыв ")</td>
             </tr>
             <tr>
                 <td><input type="submit" value="Отправить" class="btn btn-success" /> </td>
