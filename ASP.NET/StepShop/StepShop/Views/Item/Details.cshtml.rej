@@ -1,0 +1,9 @@
+diff a/ASP.NET/StepShop/StepShop/Views/Item/Details.cshtml b/ASP.NET/StepShop/StepShop/Views/Item/Details.cshtml	(rejected hunks)
+@@ -7,7 +7,6 @@
+ 
+ 
+ 
+-            <input type="hidden" value="@Model.item.Id" name="ItemId" />
+ <div>
+     <h3>@Model.item.Name</h3>
+     <img src="~/@Model.ImagePath" alt="альтернативный текст" />
