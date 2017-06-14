@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "Details";
 }
-            
+
+<h2>Detail Item</h2>            
+
 <div>
     <h3>@Model.item.Name</h3>
     <img src="~/@Model.ImagePath" alt="Рисунок не загружен" />
@@ -14,26 +16,28 @@
 
     <h4>Отзывы</h4>
 
-    @using (Html.BeginForm("AddComment", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        @*<input type="hidden" value="@Model.item.Id" name="ItemId" />*@
-        @*@Html.HiddenFor( a => a.item.Id, new { @Value = @Model.item.Id })*@
-        @Html.Hidden("ItemId",  Model.item.Id)
-        <table class="table table-condensed">
-            <tr>
-                <td><p>@Html.Label("Введите свое имя ")</p></td>
-                <td>@Html.TextBox("Author", "Введите имя")</td>
-            </tr>
-            <tr>
-                <td><p>@Html.Label("Ваш отзыв ")</p></td>
-                <td>@Html.TextBox("Message", "...отзыв ")</td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Отправить" class="btn btn-success" /> </td>
-                <td></td>
-            </tr>
-        </table>
-    }
+    <div class="container">
+        @using (Html.BeginForm("AddComment", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @*<input type="hidden" value="@Model.item.Id" name="ItemId" />*@
+            @*@Html.HiddenFor( a => a.item.Id, new { @Value = @Model.item.Id })*@
+            @Html.Hidden("ItemId", Model.item.Id)
+            <table class="table table-condensed">
+                <tr>
+                    <td><p>@Html.Label("Введите свое имя ")</p></td>
+                    <td>@Html.TextBox("Author", "Введите имя")</td>
+                </tr>
+                <tr>
+                    <td><p>@Html.Label("Ваш отзыв ")</p></td>
+                    <td>@Html.TextBox("Message", "...отзыв ")</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Отправить" class="btn btn-success" /> </td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+    </div>
 
     <table class="table table-condensed">
         <tr>
