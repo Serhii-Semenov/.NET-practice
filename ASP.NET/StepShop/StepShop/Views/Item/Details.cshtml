@@ -4,9 +4,6 @@
 @{
     ViewBag.Title = "Details";
 }
-
-
-
             
 <div>
     <h3>@Model.item.Name</h3>
@@ -20,7 +17,8 @@
     @using (Html.BeginForm("AddComment", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         @*<input type="hidden" value="@Model.item.Id" name="ItemId" />*@
-        @Html.HiddenFor( a => a.item.Id, new { id = "ItemId", Value = Model.item.Id })
+        @*@Html.HiddenFor( a => a.item.Id, new { @Value = @Model.item.Id })*@
+        @Html.Hidden("ItemId",  Model.item.Id)
         <table class="table table-condensed">
             <tr>
                 <td><p>@Html.Label("Введите свое имя ")</p></td>

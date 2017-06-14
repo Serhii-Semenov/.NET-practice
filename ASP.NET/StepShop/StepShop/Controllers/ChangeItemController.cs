@@ -35,17 +35,11 @@ namespace StepShop.Controllers
             if (it == null) Content("Error", "text/plain", Encoding.UTF8); // Сделать вьюху ошибки
             using (StepShop.Models.ShopEntities1 entities = new Models.ShopEntities1())
             {
-                var item = await entities.Items
-                    .FirstOrDefaultAsync(a => a.Id == it.Id);
+                entities.Entry(it).State = EntityState.Modified;
 
-                if (item == null) return Content("Error", "text/plain", Encoding.UTF8); // Сделать вьюху ошибки
+                await entities.SaveChangesAsync();
 
-
-
-
-
-
-                return View("Change", item);
+                return RedirectToAction("Change", it.Id);
             }
         }
 
