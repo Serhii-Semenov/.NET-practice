@@ -9,7 +9,7 @@
     <h3>@Model.item.Name</h3>
     <img src="~/@Model.ImagePath" alt="Рисунок не загружен" />
 
-    @Html.ActionLink("Изменить", "Change", "ChangeItem", new { id = Model.item.Id },
+    @Html.ActionLink("Изменить", "Edit", "Item", new { id = Model.item.Id },
                 new { @class = "btn btn-warning", role = "button" })
 
     <h4>Отзывы</h4>
