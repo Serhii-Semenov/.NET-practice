@@ -1,0 +1,53 @@
+﻿@using StepShop.Models
+@using System.Collections
+@model IEnumerable<Comment>
+
+<div>
+    <h4>Comment</h4>
+
+    @*TODO Add -> AddComments*@
+
+    <hr />
+
+    @foreach(var v in Model)
+    { 
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(a => a.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(a => v.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(a => a.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(a => v.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(a => a.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(a => v.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(a => a.Item.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(a => v.Item.Name)
+        </dd>
+
+    </dl>
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit") |
+    @Html.ActionLink("Back to List", "Index")
+</p>

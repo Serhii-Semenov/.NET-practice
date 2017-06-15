@@ -9,11 +9,28 @@
 
 <div>
     <h3>@Model.item.Name</h3>
-    <img src="~/@Model.ImagePath" alt="Рисунок не загружен" />
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <img  height="150" src="~/@Model.ImagePath" alt="Рисунок не загружен" />
+                    </div>
+                </td>
 
-    @Html.ActionLink("Изменить", "Edit", "Item", new { id = Model.item.Id },
+                <td>
+                    <div style="padding-left:50px;">
+                        @Html.DisplayFor(m=>m.item)
+
+                        @Html.ActionLink("Изменить", "Edit", "Item", new { id = Model.item.Id },
                 new { @class = "btn btn-warning", role = "button" })
-
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <br />
     <h4>Отзывы</h4>
 
     <div class="container">

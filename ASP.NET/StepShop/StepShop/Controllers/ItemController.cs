@@ -29,6 +29,7 @@ namespace StepShop.Controllers
 
                 _item.Comments = _item.Comments.OrderByDescending(r=>r.Date).ToList();
                 string path = "Content/Images/Items/" + _item.CategoryTypeId + "/" + _item.Id + ".jpg";
+
                 return View(new MyShopModel() { item = _item, ImagePath = path });
             }
         }
@@ -141,10 +142,6 @@ namespace StepShop.Controllers
                 return View();
             }
         }
-
-
-
-
 
     }
 }
