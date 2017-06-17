@@ -1,0 +1,23 @@
+﻿@using StepShop.Models
+@using System.Collections
+@model IEnumerable<Comment>
+
+@{ 
+    var grid = new WebGrid(source: Model, rowsPerPage: 3);
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="conteiner">
+    @grid.GetHtml(
+        tableStyle: "table table-hover",
+        columns: grid.Columns(
+            grid.Column(columnName: "Author", header: "Автор"),
+            grid.Column(columnName: "Date", header: "Дата"),
+            grid.Column(columnName: "Message", header: "Отзыв")
+            )
+    )
+</div>

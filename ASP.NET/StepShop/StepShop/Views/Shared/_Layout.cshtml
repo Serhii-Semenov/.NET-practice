@@ -6,13 +6,19 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("styles", required: false)
+    
 </head>
 <body>
     <div id="header">
         <div class="in_header">
             <h4> Step Shop</h4>
-            @Html.ActionLink("Главная", "Index", "Home", new { id = "" },
-                new { @class = "btn btn-warning", role = "button"})
+            <p>
+                @Html.ActionLink("Главная", "Index", "Home", new { id = "" },
+                    new { @class = "btn btn-warning", role = "button" })
+                @Html.ActionLink("Items", "Index", "Items", new { id = "" },
+                    new { @class = "btn btn-success", role = "button" })
+            </p>
         </div>
     </div>
 
