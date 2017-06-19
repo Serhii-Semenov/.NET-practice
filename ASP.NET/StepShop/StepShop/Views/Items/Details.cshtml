@@ -7,43 +7,50 @@
 
 <h2>Details</h2>
 
-<div>
+<div class="container">
     <h4>Item</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryType.Name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CategoryType.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryType.Name)
-        </dd>
-
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.CategoryType.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            @* ********************************************** *@
+            @Html.Partial("Carousel", Model.ItemImages)
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
@@ -51,4 +58,4 @@
 </p>
 
 @*<br /> @Html.Partial("CommentPartial", @Model.Comments)*@
-<br /> @Html.Partial("CommentPartialVarA", @Model.Comments)
+<br /> @Html.Partial("CommentPartialVarA", Model.Comments)

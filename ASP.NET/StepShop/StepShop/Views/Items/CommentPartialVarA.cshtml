@@ -3,7 +3,9 @@
 @model IEnumerable<Comment>
 
 @{ 
-    var grid = new WebGrid(source: Model, rowsPerPage: 3);
+    var grid = new WebGrid(source: Model, defaultSort: "Date", rowsPerPage: 3);
+    grid.SortDirection = SortDirection.Descending;
+
 }
 
 @section styles

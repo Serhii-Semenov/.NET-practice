@@ -1,0 +1,42 @@
+﻿@using StepShop.Models
+@model IEnumerable<ItemImage>
+
+@section styles
+{
+    @*<link href="@Url.Content("~/Content/css/Carousel.css")" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/css/Carousel.css" rel="stylesheet" />
+}
+
+<div id="testCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Слайды карусели -->
+    <div class="carousel-inner">
+        <!-- Слайд 1 -->
+        <div class="item active">
+            <h2>Заголовок 1</h2>
+            <p>Дополнительная информация слайда 1</p>
+            <button class="btn btn-primary btn-lg">Какая-то кнопка</button>
+        </div>
+        <!-- Слайд 2 -->
+        <div class="item">
+            <h2>Заголовок 2</h2>
+            <p>Дополнительная информация слайда 2</p>
+            <button class="btn btn-success btn-lg">Какая-то кнопка</button>
+        </div>
+        <!-- Слайд 3 -->
+        <div class="item">
+            <h2>Заголовок 3</h2>
+            <p>Дополнительная информация слайда 3</p>
+            <button class="btn btn-default btn-lg">Какая-то кнопка</button>
+        </div>
+    </div>
+
+    <!-- Навигация карусели (следующий или предыдущий слайд) -->
+    <!-- Кнопка, переход на предыдущий слайд с помощью атрибута data-slide="prev" -->
+    <a class="left carousel-control" href="#testCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <!-- Кнопка, переход на следующий слайд с помощью атрибута data-slide="next" -->
+    <a class="right carousel-control" href="#testCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>

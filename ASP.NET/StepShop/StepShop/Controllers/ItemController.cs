@@ -47,7 +47,6 @@ namespace StepShop.Controllers
             return RedirectToAction("Details", "Item", new { id = comment.ItemId });
         }
 
-
         // GET: Item/Create --------------------------------------------------------------------------------------------
         [HttpGet]
         public async Task<ActionResult> Create()

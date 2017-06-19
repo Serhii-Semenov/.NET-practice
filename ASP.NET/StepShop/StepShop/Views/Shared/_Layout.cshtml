@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+
     @RenderSection("styles", required: false)
     
 </head>
@@ -43,5 +44,7 @@
             </div>
         </div>
     }
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery-3.2.1.min.js"></script>
 </body>
 </html>
