@@ -61,14 +61,32 @@ namespace StepShop.Controllers
 
         // POST: Item/Create
         [HttpPost]
-        public async Task<ActionResult> Create(Item it)
+        //public async Task<ActionResult> Create(Item it)
+        //{
+        //    if (it == null) Content("Error", "text/plain", Encoding.UTF8); // Сделать вьюху ошибки
+        //    try
+        //    {
+        //        using (StepShop.Models.ShopEntities1 entities = new Models.ShopEntities1())
+        //        {
+        //            entities.Items.Add(it);
+        //            await entities.SaveChangesAsync();
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public async Task<ActionResult> Create(NewViewModel nvm)
         {
-            if (it == null) Content("Error", "text/plain", Encoding.UTF8); // Сделать вьюху ошибки
+            if (nvm == null) Content("Error", "text/plain", Encoding.UTF8); // Сделать вьюху ошибки
             try
             {
                 using (StepShop.Models.ShopEntities1 entities = new Models.ShopEntities1())
                 {
-                    entities.Items.Add(it);
+                    entities.Items.Add(Mapping.ItemMapping.ToItem(nvm));
                     await entities.SaveChangesAsync();
                     return RedirectToAction("Index", "Home");
                 }

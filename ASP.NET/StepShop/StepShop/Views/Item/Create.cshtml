@@ -1,4 +1,4 @@
-﻿@model StepShop.Models.Item
+﻿@model StepShop.Models.NewViewModel
 
 @{
     ViewBag.Title = "Add";
@@ -31,10 +31,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryTypeId, "Category Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryType, "Category Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-7">
-                @Html.DropDownListFor(m => m.CategoryTypeId, ViewBag.SL as SelectList, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CategoryTypeId, "", new { @class = "text-info" })
+                @Html.DropDownListFor(m => m.CategoryType, ViewBag.SL as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryType, "", new { @class = "text-info" })
             </div>
             <div class="col-md-2">
                 @Html.ActionLink("Добывить категорию", "Create", "CategoryTypes", null,

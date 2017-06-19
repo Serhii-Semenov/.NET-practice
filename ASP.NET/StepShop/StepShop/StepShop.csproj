@@ -123,6 +123,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\ItemMapping.cs" />
     <Compile Include="Models\CategoryType.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
@@ -135,7 +136,9 @@
     <Compile Include="Models\ItemImage.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemModelView.cs" />
     <Compile Include="Models\MyShopModel.cs" />
+    <Compile Include="Models\NewViewModel.cs" />
     <Compile Include="Models\Purchase.cs">
       <DependentUpon>ShopModel.tt</DependentUpon>
     </Compile>

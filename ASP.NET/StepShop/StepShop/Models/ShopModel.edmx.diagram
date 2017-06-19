@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="77b0bf8c143c4340b572bcf7e1b16287" Name="Diagram1">
         <EntityTypeShape EntityType="ShopModel.CategoryType" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopModel.Item" Width="1.5" PointX="3.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopModel.Item" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="ShopModel.FK_Item_CategoryType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ShopModel.Purchase" Width="1.5" PointX="6.375" PointY="0.625" />
         <AssociationConnector Association="ShopModel.FK_Purchase_Item" />
