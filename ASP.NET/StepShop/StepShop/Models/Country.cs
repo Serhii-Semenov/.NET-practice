@@ -12,14 +12,18 @@ namespace StepShop.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Country
     {
-        public int Id { get; set; }
-        public string Author { get; set; }
-        public string Message { get; set; }
-        public System.DateTime Date { get; set; }
-        public Nullable<int> ItemId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Country()
+        {
+            this.Producers = new HashSet<Producer>();
+        }
     
-        public virtual Item Item { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Producer> Producers { get; set; }
     }
 }

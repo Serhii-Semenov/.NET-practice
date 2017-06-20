@@ -12,14 +12,16 @@ namespace StepShop.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Phone
     {
         public int Id { get; set; }
-        public string Author { get; set; }
-        public string Message { get; set; }
-        public System.DateTime Date { get; set; }
-        public Nullable<int> ItemId { get; set; }
+        public int ProducerId { get; set; }
+        public int ItemId { get; set; }
+        public int Capacity { get; set; }
+        public int Weight { get; set; }
+        public float Display { get; set; }
     
         public virtual Item Item { get; set; }
+        public virtual Producer Producer { get; set; }
     }
 }

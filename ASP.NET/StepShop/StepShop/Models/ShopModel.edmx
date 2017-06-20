@@ -22,6 +22,13 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="ItemId" Type="int" />
         </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,6 +46,26 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProducerId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="Display" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Purchase">
           <Key>
@@ -90,6 +117,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Phone_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Producer">
+          <End Role="Producer" Type="Self.Producer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="ProducerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producer_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Producer" Type="Self.Producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producer">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Purchase_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -107,8 +176,11 @@
         <EntityContainer Name="Хранилище ShopModelContainer">
           <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemImage" EntityType="Self.ItemImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producer" EntityType="Self.Producer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comment_Item" Association="Self.FK_Comment_Item">
             <End Role="Item" EntitySet="Item" />
@@ -121,6 +193,18 @@
           <AssociationSet Name="FK_ItemImage_Item" Association="Self.FK_ItemImage_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="ItemImage" EntitySet="ItemImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Item" Association="Self.FK_Phone_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Producer" Association="Self.FK_Phone_Producer">
+            <End Role="Producer" EntitySet="Producer" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producer_Country" Association="Self.FK_Producer_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Producer" EntitySet="Producer" />
           </AssociationSet>
           <AssociationSet Name="FK_Purchase_Item" Association="Self.FK_Purchase_Item">
             <End Role="Item" EntitySet="Item" />
@@ -152,6 +236,7 @@
           <NavigationProperty Name="Purchases" Relationship="ShopModel.FK_Purchase_Item" FromRole="Item" ToRole="Purchase" />
           <NavigationProperty Name="Comments" Relationship="ShopModel.FK_Comment_Item" FromRole="Item" ToRole="Comment" />
           <NavigationProperty Name="ItemImages" Relationship="ShopModel.FK_ItemImage_Item" FromRole="Item" ToRole="ItemImage" />
+          <NavigationProperty Name="Phones" Relationship="ShopModel.FK_Phone_Item" FromRole="Item" ToRole="Phone" />
         </EntityType>
         <Association Name="FK_Item_CategoryType">
           <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="1">
@@ -188,6 +273,21 @@
           <AssociationSet Name="FK_ItemImage_Item" Association="ShopModel.FK_ItemImage_Item">
             <End Role="Item" EntitySet="Items" />
             <End Role="ItemImage" EntitySet="ItemImages" />
+          </AssociationSet>
+          <EntitySet Name="Countries" EntityType="ShopModel.Country" />
+          <EntitySet Name="Phones" EntityType="ShopModel.Phone" />
+          <EntitySet Name="Producers" EntityType="ShopModel.Producer" />
+          <AssociationSet Name="FK_Producer_Country" Association="ShopModel.FK_Producer_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Producer" EntitySet="Producers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Item" Association="ShopModel.FK_Phone_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Producer" Association="ShopModel.FK_Phone_Producer">
+            <End Role="Producer" EntitySet="Producers" />
+            <End Role="Phone" EntitySet="Phones" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Purchase">
@@ -246,6 +346,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="ShopModel.FK_ItemImage_Item" FromRole="ItemImage" ToRole="Item" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_ItemImage_Item">
           <End Type="ShopModel.Item" Role="Item" Multiplicity="1">
@@ -258,6 +359,79 @@
             </Principal>
             <Dependent Role="ItemImage">
               <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Producers" Relationship="ShopModel.FK_Producer_Country" FromRole="Country" ToRole="Producer" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProducerId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="Display" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="ShopModel.FK_Phone_Item" FromRole="Phone" ToRole="Item" />
+          <NavigationProperty Name="Producer" Relationship="ShopModel.FK_Phone_Producer" FromRole="Phone" ToRole="Producer" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="ShopModel.FK_Producer_Country" FromRole="Producer" ToRole="Country" />
+          <NavigationProperty Name="Phones" Relationship="ShopModel.FK_Phone_Producer" FromRole="Producer" ToRole="Phone" />
+        </EntityType>
+        <Association Name="FK_Producer_Country">
+          <End Type="ShopModel.Country" Role="Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopModel.Producer" Role="Producer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producer">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Item">
+          <End Type="ShopModel.Item" Role="Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopModel.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Producer">
+          <End Type="ShopModel.Producer" Role="Producer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopModel.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="ProducerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -309,7 +483,37 @@
           <EntitySetMapping Name="ItemImages">
             <EntityTypeMapping TypeName="ShopModel.ItemImage">
               <MappingFragment StoreEntitySet="ItemImage">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="ShopModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="ShopModel.Phone">
+              <MappingFragment StoreEntitySet="Phone">
+                <ScalarProperty Name="Display" ColumnName="Display" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producers">
+            <EntityTypeMapping TypeName="ShopModel.Producer">
+              <MappingFragment StoreEntitySet="Producer">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

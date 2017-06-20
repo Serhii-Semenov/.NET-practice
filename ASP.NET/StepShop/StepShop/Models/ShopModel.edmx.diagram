@@ -5,15 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="77b0bf8c143c4340b572bcf7e1b16287" Name="Diagram1">
-        <EntityTypeShape EntityType="ShopModel.CategoryType" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopModel.CategoryType" Width="1.5" PointX="0.625" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopModel.Item" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="ShopModel.FK_Item_CategoryType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShopModel.Purchase" Width="1.5" PointX="6.375" PointY="0.625" />
+        <EntityTypeShape EntityType="ShopModel.Purchase" Width="1.5" PointX="6.75" PointY="0.5" />
         <AssociationConnector Association="ShopModel.FK_Purchase_Item" />
-        <EntityTypeShape EntityType="ShopModel.Comment" Width="1.5" PointX="6.375" PointY="3.375" />
+        <EntityTypeShape EntityType="ShopModel.Comment" Width="1.5" PointX="6.75" PointY="5.125" />
         <AssociationConnector Association="ShopModel.FK_Comment_Item" />
         <EntityTypeShape EntityType="ShopModel.ItemImage" Width="1.5" PointX="0.75" PointY="4" />
         <AssociationConnector Association="ShopModel.FK_ItemImage_Item" />
+        <EntityTypeShape EntityType="ShopModel.Country" Width="1.5" PointX="11.125" PointY="3.125" />
+        <EntityTypeShape EntityType="ShopModel.Phone" Width="1.5" PointX="6.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ShopModel.Producer" Width="1.5" PointX="9" PointY="2.75" />
+        <AssociationConnector Association="ShopModel.FK_Producer_Country" />
+        <AssociationConnector Association="ShopModel.FK_Phone_Item" />
+        <AssociationConnector Association="ShopModel.FK_Phone_Producer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
