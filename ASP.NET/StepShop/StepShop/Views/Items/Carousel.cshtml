@@ -1,6 +1,8 @@
 ﻿@using StepShop.Models
 @model IEnumerable<ItemImage>
-
+@{
+    bool Flag = true;
+}
 @section styles
 {
     @*<link href="@Url.Content("~/Content/css/Carousel.css")" rel="stylesheet" type="text/css" />*@
@@ -10,24 +12,28 @@
 <div id="testCarousel" class="carousel slide" data-ride="carousel">
     <!-- Слайды карусели -->
     <div class="carousel-inner">
-        <!-- Слайд 1 -->
-        <div class="item active">
-            <h2>Заголовок 1</h2>
-            <p>Дополнительная информация слайда 1</p>
-            <button class="btn btn-primary btn-lg">Какая-то кнопка</button>
-        </div>
-        <!-- Слайд 2 -->
-        <div class="item">
-            <h2>Заголовок 2</h2>
-            <p>Дополнительная информация слайда 2</p>
-            <button class="btn btn-success btn-lg">Какая-то кнопка</button>
-        </div>
-        <!-- Слайд 3 -->
-        <div class="item">
-            <h2>Заголовок 3</h2>
-            <p>Дополнительная информация слайда 3</p>
-            <button class="btn btn-default btn-lg">Какая-то кнопка</button>
-        </div>
+        
+        @foreach (var v in Model)
+        {
+            if (Flag)
+            {
+                Flag = false;
+                <!-- Слайд 1 -->
+                <div class="item active">
+                    <h2> @v.Item.Name</h2>
+                    <p> v.Name - @v.Name</p>
+                    <button class="btn btn-primary btn-lg">Какая-то кнопка</button>
+                </div>
+                continue;
+            }
+            <!-- Слайд ..n.. -->
+            <div class="item">
+                <h2> @v.Item.Name</h2>
+                <p> v.Name - @v.Name</p>
+                <button class="btn btn-success btn-lg">Какая-то кнопка</button>
+            </div>
+        }
+
     </div>
 
     <!-- Навигация карусели (следующий или предыдущий слайд) -->

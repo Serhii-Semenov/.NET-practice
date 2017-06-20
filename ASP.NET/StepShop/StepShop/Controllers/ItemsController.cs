@@ -29,7 +29,7 @@ namespace StepShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = await db.Items.FindAsync(id);
+            Item item = await db.Items.Include(a=>a.ItemImages).FirstOrDefaultAsync(a=>a.Id==id);
             if (item == null)
             {
                 return HttpNotFound();

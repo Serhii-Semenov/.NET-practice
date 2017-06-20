@@ -12,7 +12,7 @@
         <AssociationConnector Association="ShopModel.FK_Purchase_Item" />
         <EntityTypeShape EntityType="ShopModel.Comment" Width="1.5" PointX="6.375" PointY="3.375" />
         <AssociationConnector Association="ShopModel.FK_Comment_Item" />
-        <EntityTypeShape EntityType="ShopModel.ItemImage" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="ShopModel.ItemImage" Width="1.5" PointX="0.75" PointY="4" />
         <AssociationConnector Association="ShopModel.FK_ItemImage_Item" />
       </Diagram>
     </edmx:Diagrams>
