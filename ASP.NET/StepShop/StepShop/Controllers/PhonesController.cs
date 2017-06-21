@@ -53,36 +53,41 @@ namespace StepShop.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Phone.ProducerId,Phone.ItemId,Phone.Capacity,Phone.Weight,Phone.Display,Items.Name,Items.Description,Items.CategoryTypeId,Items.Price")] CreatePhoneModel phone)
+
+        public async Task<ActionResult> Create(FormCollection collection)
+        //[
+        //Bind(Include = "ProducerId, Item.Name, Item.Description, CategoryTypeId, Item.Price, Phone.Capacity, Phone.Weight, Phone.Display"
+        //    /*Prefix = "Phone, Item"*/)
+        //] CreatePhoneModel phone)
         {
             if (ModelState.IsValid)
             {
-                var item = db.Items.Add(new Item() { 
-                    CategoryTypeId = phone.Item.CategoryTypeId,
-                     Description = phone.Item.Description,
-                      Name = phone.Item.Name,
-                       Price = phone.Item.Price
+                //var a1 = collection["ProducerId"];
+                //var a2 = collection["Item.Name"];
+                //var a3 = collection["Item.Description"];
+                //var a4 = collection["Phone.Capacity"];
+                //var a5 = collection["CategoryTypeId"];
+                var item = db.Items.Add(new Item()
+                {
+                    CategoryTypeId = int.Parse(collection["CategoryTypeId"]),
+                    Description = collection["Item.Description"],
+                    Name = collection["Item.Name"],
+                    Price = int.Parse(collection["Item.Price"])
                 });
-                db.Phones.Add(new Phone() {
-                     Capacity = phone.Phone.Capacity,
-                      Display = phone.Phone.Display,
-                       Weight = phone.Phone.Weight,
-                        Item = item
+                await db.SaveChangesAsync();
+                db.Phones.Add(new Phone()
+                {
+                    Capacity = int.Parse(collection["Phone.Capacity"]),
+                    Display = float.Parse(collection["Phone.Display"]),
+                    Weight = int.Parse(collection["Phone.Weight"]),
+                    ProducerId = int.Parse(collection["ProducerId"]),
+                     Item = item
                 });
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            //if (ModelState.IsValid)
-            //{
-            //    db.Phones.Add(phone);
-            //    await db.SaveChangesAsync();
-            //    return RedirectToAction("Index");
-            //}
-
-            ViewBag.ItemId = new SelectList(db.Items, "Id", "Name", phone.Phone.ItemId);
-            ViewBag.ProducerId = new SelectList(db.Producers, "Id", "Name", phone.Phone.ProducerId);
-            return View(phone);
+            return View();
         }
 
         // GET: Phones/Edit/5
