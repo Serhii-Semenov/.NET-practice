@@ -1,0 +1,10 @@
+xvii@step.edu
+
+340$Uuxwp7Mcxo7Khy
+
+Server=tcp:xvstepshop.database.windows.net,1433;Initial Catalog=Shop;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+
+
+340$Uuxwp7Mcxo7Khy
+
+metadata=res://*/Models.ShopModel.csdl|res://*/Models.ShopModel.ssdl|res://*/Models.ShopModel.msl;provider=System.Data.SqlClient;provider connection string="data source=stepshop2.database.windows.net;initial catalog=Shop;user id=step;MultipleActiveResultSets=True;App=EntityFramework"

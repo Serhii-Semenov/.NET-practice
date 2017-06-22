@@ -8,12 +8,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StepShop.Models;
+using Mapper.Repositories;
+using AutoMapper;
 
 namespace StepShop.Controllers
 {
     public class PhonesController : Controller
     {
         private ShopEntities1 db = new ShopEntities1();
+        IRepository<Item> repo;
+
+        public PhonesController()
+        {
+            repo = new ItemRepository();
+        }
 
         // GET: Phones
         public async Task<ActionResult> Index()
@@ -62,11 +70,6 @@ namespace StepShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var a1 = collection["ProducerId"];
-                //var a2 = collection["Item.Name"];
-                //var a3 = collection["Item.Description"];
-                //var a4 = collection["Phone.Capacity"];
-                //var a5 = collection["CategoryTypeId"];
                 var item = db.Items.Add(new Item()
                 {
                     CategoryTypeId = int.Parse(collection["CategoryTypeId"]),
