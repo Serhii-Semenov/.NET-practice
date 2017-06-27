@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Linq;
+using AuthASP.Mapping;
+using DataLevel.Model;
+using AuthASP.Models;
 
 namespace AuthASP.Controllers
 {
@@ -16,9 +19,11 @@ namespace AuthASP.Controllers
         public async Task<JsonResult> Index()
         {
             // TODO get item list and send as JSON
-            var c = new ItemRepository();
-            var i = await c.GetAllItem();
-            return Json(i.Select(a=>a.Name).ToList(), JsonRequestBehavior.AllowGet);
+            var r = new ItemRepository();
+            List<Item> items = await r.GetAllItem();
+            List<ShopItem> shopItems = items.ToShopItems();
+            var json = Json(shopItems, JsonRequestBehavior.AllowGet);
+            return json;
         }
     }
 }
