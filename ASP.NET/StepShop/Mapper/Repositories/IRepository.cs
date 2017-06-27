@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mapper.Repositories
 {
-    interface IRepository<T> : IDisposable
-        where T : class
+    interface IRepository<T> : IDisposable where T : class
     {
         IEnumerable<T> GetAll();
         T Get(int id);
