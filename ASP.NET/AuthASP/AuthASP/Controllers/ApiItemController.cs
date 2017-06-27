@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AuthASP.Controllers
 {
@@ -17,7 +18,7 @@ namespace AuthASP.Controllers
             // TODO get item list and send as JSON
             var c = new ItemRepository();
             var i = await c.GetAllItem();
-            return Json(i, JsonRequestBehavior.AllowGet);
+            return Json(i.Select(a=>a.Name).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }
