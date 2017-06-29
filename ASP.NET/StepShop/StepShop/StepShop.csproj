@@ -254,7 +254,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mapper\Mapper.csproj">
+    <ProjectReference Include="..\Mapper\logicLevel.csproj">
       <Project>{b48332e9-ba05-453b-af40-d222831104f1}</Project>
       <Name>Mapper</Name>
     </ProjectReference>

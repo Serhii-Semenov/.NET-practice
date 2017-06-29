@@ -8,32 +8,18 @@ using System.Threading.Tasks;
 
 namespace Mapper.Repositories
 {
-    public class ItemRepository : IRepository<Item>
+    class PhoneRepository : IRepository<Phone>
     {
         private ShopEntities db;
 
-        public ItemRepository(ShopEntities db)
+        public PhoneRepository(ShopEntities db)
         {
             this.db = db;
         }
-        public IEnumerable<Item> GetAll()
-        {
-            return db.Items.Include(a=>a.CategoryType).Include(a=>a.Comments).Include(a=>a.Purchases).Include(a=>a.Phones).ToList();
-        }
 
-        public Item Get(int id)
+        public void Create(Phone item)
         {
-            return db.Items.Find(id);
-        }
-
-        public void Create(Item item)
-        {
-            db.Items.Add(item);
-        }
-
-        public void Update(Item item)
-        {
-            db.Entry(item).State = EntityState.Modified;
+            db.Phones.Add(item);
         }
 
         public void Delete(int id)
@@ -41,6 +27,21 @@ namespace Mapper.Repositories
             Item item = db.Items.Find(id);
             if (item != null)
                 db.Items.Remove(item);
+        }
+
+        public Phone Get(int id)
+        {
+            return db.Phones.Include(a => a.Item).Include(a => a.Producer).FirstOrDefault(a=>a.Id == id);
+        }
+
+        public IEnumerable<Phone> GetAll()
+        {
+            return db.Phones.Include(a => a.Item).Include(a => a.Producer).ToList();
+        }
+
+        public void Update(Phone item)
+        {
+            db.Entry(item).State = EntityState.Modified;
         }
 
         private bool disposed = false;
@@ -62,6 +63,6 @@ namespace Mapper.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-    }
 
+    }
 }
